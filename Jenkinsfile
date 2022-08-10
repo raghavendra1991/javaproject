@@ -3,9 +3,12 @@ pipeline {
    stages {
       stage("build & SonarQube analysis") {
         agent any
+        environment {
+	       scannerHome = tool 'SonarQube Scanner'
+	     }
         steps {
             withSonarQubeEnv('admin') {
-               sh 'mvn clean test package sonar:sonar'
+               sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=java"
             }
         }
       }
