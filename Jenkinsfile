@@ -8,7 +8,7 @@ pipeline {
 	     }
         steps {
             withSonarQubeEnv('admin') {
-               sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=java"
+               sh "mvn clean verify sonar:sonar -Dsonar.projectKey=java"
             }
         }
       }
